@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>dev.langchain4j</groupId>
+  <artifactId>javafx-example</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- DEPENDENCIES VERSIONS -->
+    <java.version>17</java.version>
+    <javafx.version>23.0.1</javafx.version>
+    <langchain4j.version>1.0.1</langchain4j.version>
+    <log4j.version>2.22.1</log4j.version>
+
+    <!-- BUILD PLUGIN VERSIONS -->
+    <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+  </properties>
+
+  <dependencies>
+    <!-- JavaFX -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>23.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>23.0.1</version>
+    </dependency>
+
+    <!-- LangChain4J -->
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-open-ai</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-easy-rag</artifactId>
+      <version>1.1.0-beta7</version>
+    </dependency>
+
+    <!-- Logging -->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.logging.log4j</groupId>-->
+<!--      <artifactId>log4j-api</artifactId>-->
+<!--      <version>1.1.0</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.logging.log4j</groupId>-->
+<!--      <artifactId>log4j-slf4j2-impl</artifactId>-->
+<!--      <version>1.1.0</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>dev.langchain4j</groupId>-->
+<!--      <artifactId>langchain4j-embeddings-bge-small-en-v15-q</artifactId>-->
+<!--      <version>1.0.1-beta7</version>-->
+<!--      <scope>compile</scope>-->
+<!--    </dependency>-->
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>${javafx.maven.plugin.version}</version>
+        <configuration>
+          <mainClass>Main</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
