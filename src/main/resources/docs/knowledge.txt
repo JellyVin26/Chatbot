@@ -1,1 +1,78 @@
-Newton’s first law: An object in motion stays in motion unless acted upon by an external force.
+1. Definition and Purpose
+A theme park is an amusement park with a unifying aesthetic, story, or motif that guides the design of its attractions, environment, and entertainment. Theme parks blend rides, shows, dining, and immersive environments to deliver a coherent visitor experience.
+
+2. Park Layout & Zoning
+
+Themed Lands: Distinct areas (e.g., Fantasy, Adventure, Sci-Fi) featuring rides and décor aligned with a central story.
+
+Main Street / Entry Plaza: Gateway zone for ticketing, guest services, and retail; sets the tone for the park.
+
+Central Hub: Often a circular or plaza area that provides sightlines to different themed lands.
+
+Back-of-House: Behind-the-scenes facilities for operations, maintenance, and staff areas (hidden from guests).
+
+3. Ride Categories
+
+Thrill Rides
+
+High-speed coasters (steel, wooden) with drops, inversions, and high g-forces.
+
+Drop towers: vertical free-fall experiences.
+
+Tower swings and pendulum rides.
+
+Family & Gentle Rides
+
+Ferris Wheel: slow, panoramic views.
+
+Carousel / Merry-Go-Round: rotating platform with seats shaped like horses or vehicles.
+
+Dark rides: indoor, story-driven journeys with special effects.
+
+Water Rides
+
+Log flumes: boat slides with splashdowns.
+
+River rapids: circular rafts navigating turbulent channels.
+
+Splash pads and water playgrounds.
+
+Simulator & Virtual Rides
+
+Motion simulators: seats that move in sync with projected film.
+
+4D theaters: combine 3D film with environmental effects (wind, mist, scents).
+
+4. Ride Components & Safety Systems
+
+Restraint Types: Lap bars, over-the-shoulder harnesses, seat belts.
+
+Control Systems: Programmable logic controllers (PLCs), block zones on coasters to maintain safe spacing.
+
+Emergency Brakes: Magnetic or friction brakes to stop trains/rides safely.
+
+Daily Inspection Protocols: Visual checks, non-destructive testing (ultrasonic, dye penetrant) for structural integrity.
+
+5. Guest Flow & Queue Management
+
+Standard Queues: Switchbacks and handrails to manage waiting lines.
+
+Virtual Queue Systems: Mobile apps or kiosks that assign return times.
+
+Single-Rider Lines: Fill empty seats to maximize throughput.
+
+6. Operational Considerations
+
+Capacity Planning: Throughput (people per hour) targets for each ride.
+
+Staffing & Training: Ride operators, lifeguards (for water rides), and maintenance crews.
+
+Theming & Storytelling: Costumes, audio-animatronics, and environmental details to reinforce immersion.
+
+7. Common Metrics
+
+Ride Throughput (RPH): Number of riders served per hour.
+
+Average Wait Time: Measured for queue management and guest satisfaction.
+
+Downtime & Availability: Percentage of operating hours a ride is open to guests.
