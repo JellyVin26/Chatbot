@@ -10,29 +10,17 @@ import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
-import dev.langchain4j.data.document.loader.*   ;
-import dev.langchain4j.data.document.Document;
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -55,7 +43,7 @@ public class Main extends Application {
         Document document = FileSystemDocumentLoader.loadDocument(docPath, parser);
         // Build the LangChain4j OpenAI chat model
         OpenAiChatModel model = OpenAiChatModel.builder()
-                .apiKey("OPENAI_API_KEY"));
+                .apiKey("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")
                 .modelName("gpt-4o-mini")  // or "gpt-4o" / "gpt-4o-mini"
                 .build();
 
@@ -71,75 +59,87 @@ public class Main extends Application {
                 .contentRetriever(retriever)
                 .build();
 
-        // Container for messages
-        VBox messageContainer = new VBox(8);
-        messageContainer.setPadding(new Insets(10));
+        // Header bar
+        HBox header = new HBox();
+        header.setStyle("-fx-background-color: #6200ea;");
+        header.setPadding(new Insets(8));
+        Label title = new Label("Chatbot");
+        title.setTextFill(Color.WHITE);
+        title.setStyle("-fx-font-weight: bold; -fx-font-size: 16px;");
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        // Window controls placeholder
+        HBox controls = new HBox(6);
+        header.getChildren().addAll(title, spacer, controls);
 
-        // Scrollable view for chat
+
+        // Chat container
+        VBox messageContainer = new VBox(6);
+        messageContainer.setPadding(new Insets(10));
         ScrollPane scrollPane = new ScrollPane(messageContainer);
         scrollPane.setFitToWidth(true);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setStyle("-fx-background: #d3d3d3;");
 
-        //Input field
+        // Input area
         TextField inputField = new TextField();
-        inputField.setPromptText("Ask a question...");
+        inputField.setPromptText("Type anything here");
+        inputField.setStyle("-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #f2f2f2;");
         HBox.setHgrow(inputField, Priority.ALWAYS);
 
         //Send button
-        Button sendButton = new Button("Send");
+        Button sendButton = new Button("ENTER");
+        sendButton.setStyle("-fx-background-color: #6200ea; -fx-text-fill: white; -fx-background-radius: 20;");
         sendButton.setDefaultButton(true);
         sendButton.setOnAction(e -> {
-            String question = inputField.getText().trim();
-            if (!question.isEmpty()) {
-                // Display user message
-                TextArea userArea = new TextArea("User: " + question);
-                userArea.setWrapText(true);
-                userArea.setEditable(false);
-                userArea.setMaxWidth(Double.MAX_VALUE);
-                userArea.setPrefRowCount(2);
-                userArea.setStyle("-fx-control-inner-background: #e3f2fd;" +
-                                    "-fx-font-family: 'Times New Roman';"+
-                                    "-fx-font-size: 13px");
-                messageContainer.getChildren().add(userArea);
-                scrollPane.layout();
-                scrollPane.setVvalue(1.0);
-
-                // Fetch assistant response in background
-                new Thread(() -> {
-                    String response = assistant.chat(question);
-                    Platform.runLater(() -> {
-                        TextArea assistantArea = new TextArea("Chatbot: " + response);
-                        assistantArea.setWrapText(true);
-                        assistantArea.setEditable(false);
-                        assistantArea.setMaxWidth(Double.MAX_VALUE);
-                        assistantArea.setStyle("-fx-control-inner-background: #f5f5f5;"+
-                                                "-fx-font-family: 'Times New Roman';" +
-                                                "-fx-font-size: 13px");
-                        messageContainer.getChildren().add(assistantArea);
-                        scrollPane.layout();
-                        scrollPane.setVvalue(1.0);
-                    });
-                }).start();
-
+            String text = inputField.getText().trim();
+            if (!text.isEmpty()) {
+                addBubble(messageContainer, scrollPane, text, true);
                 inputField.clear();
+                new Thread(() -> {
+                    String resp = assistant.chat(text);
+                    Platform.runLater(() -> addBubble(messageContainer, scrollPane, resp, false));
+                }).start();
             }
         });
 
-        // Input row container
-        HBox inputRow = new HBox(8, inputField, sendButton);
-        inputRow.setPadding(new Insets(10));
-        inputRow.setAlignment(Pos.CENTER);
+        // Input bar
+        HBox inputBar = new HBox(8, inputField, sendButton);
+        inputBar.setPadding(new Insets(10));
+        inputBar.setStyle("-fx-background-color: #eeeeee; -fx-background-radius: 20;");
+        inputBar.setAlignment(Pos.CENTER);
 
-        // Main layout using BorderPane
+
+        // Main layout
         BorderPane root = new BorderPane();
+        root.setTop(header);
         root.setCenter(scrollPane);
-        root.setBottom(inputRow);
-
-        // Scene and stage setup
+        root.setBottom(inputBar);
         Scene scene = new Scene(root, 700, 500);
-        primaryStage.setTitle("LangChain4j RAG Chatbot");
         primaryStage.setScene(scene);
+        primaryStage.setTitle("LangChain4j RAG Chatbot");
         primaryStage.show();
+    }
+
+    private void addBubble(VBox container, ScrollPane scroll, String text, boolean isUser) {
+        Label bubble = new Label(text);
+        bubble.setWrapText(true);
+        bubble.setMaxWidth(700);
+        bubble.setPadding(new Insets(8));
+
+        Circle avatar = new Circle(10, Color.web("#6200ea"));
+        HBox box = new HBox(6);
+        if (isUser) {
+            bubble.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 16 0 16 16;");
+            box.setAlignment(Pos.CENTER_RIGHT);
+            box.getChildren().addAll(bubble, avatar);
+        } else {
+            bubble.setStyle("-fx-background-color: white;" + "-fx-text-fill: black;" + "-fx-background-radius: 0 16 16 16;");
+            box.setAlignment(Pos.CENTER_LEFT);
+            box.getChildren().addAll(avatar, bubble);
+        }
+        container.getChildren().add(box);
+        scroll.layout(); scroll.setVvalue(1.0);
     }
 
     public static void main(String[] args) {
