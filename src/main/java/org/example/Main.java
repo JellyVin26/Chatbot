@@ -55,7 +55,7 @@ public class Main extends Application {
         Document document = FileSystemDocumentLoader.loadDocument(docPath, parser);
         // Build the LangChain4j OpenAI chat model
         OpenAiChatModel model = OpenAiChatModel.builder()
-                .apiKey("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")
+                .apiKey("OPENAI_API_KEY"));
                 .modelName("gpt-4o-mini")  // or "gpt-4o" / "gpt-4o-mini"
                 .build();
 
