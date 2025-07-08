@@ -9,6 +9,7 @@ module org.example {
     requires java.net.http;                 // needed if HttpTimeoutException occurs
     requires com.fasterxml.jackson.core;    // needed if assistant is null
     exports org.example;
+    exports controller;
 
-    opens org.example to javafx.fxml;
+    opens controller to javafx.fxml;
 }
