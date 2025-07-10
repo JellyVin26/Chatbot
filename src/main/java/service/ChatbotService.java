@@ -21,7 +21,7 @@ public class ChatbotService {
     public ChatbotService(Document knowledgeBase, String apiKey) {
         // build model
         OpenAiChatModel model = OpenAiChatModel.builder()
-                .apiKey("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")
+                .apiKey("OPENAI_API_KEY")
                 .modelName("gpt-4o") // or "gpt-4o-mini"
                 .build();
 

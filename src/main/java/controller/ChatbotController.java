@@ -27,7 +27,7 @@ public class ChatbotController {
         // build DAO → load doc → create service
         var dao = new ChatbotDAO();
         var doc = dao.loadKnowledgeBase();
-        chatbot = new ChatbotService(doc, System.getenv("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"));
+        chatbot = new ChatbotService(doc, System.getenv("OPENAI_API_KEY"));
 
         sendButton.setOnAction(e -> onSend());
     }
